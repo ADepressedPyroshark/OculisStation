@@ -5,6 +5,8 @@
 	pref_flag = ROLE_MISCREANT
 	preview_outfit = /datum/outfit/miscreant
 	antag_moodlet = /datum/mood_event/miscreant
+	can_assign_self_objectives = TRUE
+	default_custom_objective = "Perform an overcomplicated heist on valuable Nanotrasen assets."
 	hud_icon = 'modular_oculis/modules/miscreants/icons/miscreants_hud.dmi'
 	antag_hud_name = "miscreant"
 	var/datum/team/miscreants/miscreant_team
@@ -13,6 +15,8 @@
 	if((new_owner.assigned_role.departments_bitflags & (DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CAPTAIN | DEPARTMENT_BITFLAG_CENTRAL_COMMAND)) > 0)
 		return FALSE
 	return ..()
+/datum/antagonist/miscreant/antag_panel_data()
+	return "Conspirators : [get_miscreant_squad()]"
 
 /datum/antagonist/miscreant/admin_add(datum/mind/new_owner, mob/admin)
 	new_owner.add_antag_datum(src)
@@ -52,8 +56,21 @@
 	objectives -= miscreant_team.objectives
 	. = ..()
 
+/datum/antagonist/brother/proc/get_miscreant_squad()
+	var/list/miscreant_squad = team.members - owner
+	var/miscreant_text = ""
+	for(var/i = 1 to miscreant_squad.len)
+		var/datum/mind/M = miscreant_squad[i]
+		miscreant_text += M.name
+		if(i == miscreant_squad.len - 1)
+			miscreant_text += " and "
+		else if(i != miscreant_squad.len)
+			miscreant_text += ", "
+	return miscreant_text
+
 /datum/antagonist/miscreant/greet()
 	. = ..()
+	var/miscreant_text = get_miscreant_squad()
 	to_chat(owner, span_userdanger("Help your cause. Do not harm your fellow miscreants. You can identify your comrades by the brown \"M\" icons."))
 
 ///Announce team flavor text, objectives and OOC notes to miscreant
@@ -116,6 +133,13 @@
 	//Update the miscreant_team var
 	miscreant_team = destination_team
 
+/datum/antagonist/miscreant/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = ()
+	data["miscreant_squad"] = get_miscreant_squad()
+	return data
+
 /datum/antagonist/miscreant/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(preview_outfit)
 
@@ -145,3 +169,4 @@
 	qdel(assistant)
 
 	return assistant_icon
+

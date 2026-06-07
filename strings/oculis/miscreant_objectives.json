@@ -114,10 +114,10 @@
 		},
 
 		{
-			"group_name":"Super Villian Organization",
-			"flavor_text":"You're apart of the newest (and baddest) super villian group around, and those who do good will know only suffering from your squad! Banana peals, welded airlocks and other nefarious deeds face those who oppose you!",
+			"group_name":"MKinor Super Villain Organization",
+			"flavor_text":"You're a part of the newest (and baddest) super villain group around, and those who inconvenience you know only suffering from your squad! Banana peels, welded airlocks, petty arguments, and other nefarious deeds face those who oppose you!",
 			"objective":"Ruin the days of those who dare oppose you with escalating inconvenience after inconvenience.",
-			"ooc_notes":"Ideally, you are aiming to inconvenience and annoy whoever wrongs you. Try and keep people uninvolved with your schemes and target(s) out of harms way."
+			"ooc_notes":"Ideally, you are aiming to inconvenience and annoy whoever wrongs you. Try and keep people uninvolved with your schemes and target(s) out of harms way. Make sure to start small!"
 		}
 	]
 }
