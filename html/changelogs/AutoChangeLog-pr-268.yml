@@ -1,4 +1,0 @@
-author: "Shroopy"
-delete-after: True
-changes:
-  - code_imp: "Changed the reference to tgstation to Oculis Station in the github message of the stale workflow."
