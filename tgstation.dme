@@ -10120,6 +10120,7 @@
 #include "modular_oculis\modules\mining\mega_respawning\spawn_marker.dm"
 #include "modular_oculis\modules\mining\mega_respawning\summoning_flutes.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_antag.dm"
+#include "modular_oculis\modules\miscreants\code\miscreants_hand_item.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_mood_buff.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_objective_datum.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_outfit.dm"
