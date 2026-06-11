@@ -1,4 +1,4 @@
-#define MISCREANT_OBJECTIVES_FILE "iris/miscreant_objectives.json"
+#define MISCREANT_OBJECTIVES_FILE "oculis/miscreant_objectives.json"
 
 /datum/team/miscreants
 	name = "\improper Band of Miscreants"

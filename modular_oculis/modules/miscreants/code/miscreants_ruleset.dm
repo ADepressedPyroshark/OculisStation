@@ -17,8 +17,8 @@
 		JOB_NT_REP
 	)
 	min_pop = 10
-	min_antag_cap = 2
-	weight = 5 //slightly rarer than traitors
+	min_antag_cap = 1
+	weight = 5 //needs to be adjusted for Oculis
 
 /datum/dynamic_ruleset/roundstart/miscreant/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/miscreant)

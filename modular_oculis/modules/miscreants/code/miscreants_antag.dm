@@ -9,136 +9,57 @@
 	default_custom_objective = "Perform an overcomplicated heist on valuable Nanotrasen assets."
 	hud_icon = 'modular_oculis/modules/miscreants/icons/miscreants_hud.dmi'
 	antag_hud_name = "miscreant"
-	var/datum/team/miscreants/miscreant_team
+	/// Ref used to easily retrieve the action used when removing the quirk from silicons
+	var/datum/weakref/shaker_ref
 
-/datum/antagonist/miscreant/can_be_owned(datum/mind/new_owner)
-	if(new_owner.assigned_role.departments_bitflags & (DEPARTMENT_BITFLAG_SECURITY | DEPARTMENT_BITFLAG_CAPTAIN | DEPARTMENT_BITFLAG_CENTRAL_COMMAND))
-		return FALSE
-	return ..()
-/datum/antagonist/miscreant/antag_panel_data()
-	return "Conspirators : [get_miscreant_squad()]"
+	VAR_PRIVATE
+		datum/team/miscreants/team
 
-/datum/antagonist/miscreant/admin_add(datum/mind/new_owner, mob/admin)
-	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] a miscreant.")
-	log_admin("[key_name(admin)] has made [key_name(new_owner)] a miscreant.")
-	to_chat(new_owner.current, span_userdanger("You are a miscreant!"))
+/datum/antagonist/miscreants/get_team()
+	return team
 
-/datum/antagonist/miscreant/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	add_team_hud(M, /datum/antagonist/miscreant)
-
-/datum/antagonist/miscreant/on_gain()
-	. = ..()
-	var/list/miscreant_teams = list()
-	for(var/datum/team/miscreants/team in GLOB.antagonist_teams)
-		miscreant_teams += team
-	if(miscreant_teams.len == 0) //no existing teams so make a new one
-		miscreant_team = new/datum/team/miscreants()
-	var/full_teams_count = 0
-	for(var/datum/team/miscreants/existing_team in miscreant_teams)
-		if(existing_team.members.len >= existing_team.max_miscreants)
-			full_teams_count++
-			if(full_teams_count == miscreant_teams.len) //all existing teams are full so make a new one
-				miscreant_team = new/datum/team/miscreants()
-				break
-			continue
-		miscreant_team = existing_team //otherwise assign to first team with a spot
-		miscreant_team.members += owner
-		break
-	objectives += miscreant_team.objectives
-	owner.current.log_message("has been converted into a miscreant!", LOG_ATTACK, color="red")
-
-	//has to be called here rather than in greet() because that seems to be called before on_gain() so the team var is unset
-	handle_announcements(miscreant_team)
-
-/datum/antagonist/miscreant/on_removal()
-	objectives -= miscreant_team.objectives
-	. = ..()
-
-/datum/antagonist/brother/proc/get_miscreant_squad()
-	var/list/miscreant_squad = team.members - owner
-	var/miscreant_text = ""
-	for(var/i = 1 to miscreant_squad.len)
-		var/datum/mind/M = miscreant_squad[i]
-		miscreant_text += M.name
-		if(i == miscreant_squad.len - 1)
-			miscreant_text += " and "
-		else if(i != miscreant_squad.len)
-			miscreant_text += ", "
-	return miscreant_text
-
-/datum/antagonist/miscreant/greet()
-	. = ..()
-	var/miscreant_text = get_miscreant_squad()
-	to_chat(owner, span_userdanger("Help your cause. Do not harm your fellow miscreants. You can identify your comrades by the brown \"M\" icons."))
-
-///Announce team flavor text, objectives and OOC notes to miscreant
-/datum/antagonist/miscreant/proc/handle_announcements(datum/team/miscreants/team)
-	if(!team)
+/datum/antagonist/miscreants/create_team(datum/team/miscreants/new_team)
+	if(!new_team)
+		team = new()
 		return
-	to_chat(owner, span_notice("[team.flavor_text]"))
-	if(team.meeting_location && !team.meeting_has_started)
-		to_chat(owner, span_notice("Your first meeting is due to take place at the <b>[team.meeting_location.name]</b> in <b>ten</b> 4th-wall-breaking meta-minutes."))
-	owner.announce_objectives()
-	if(team.ooc_text)
-		to_chat(owner, span_userdanger("[team.ooc_text]"))
+	if(!istype(new_team))
+		stack_trace("Wrong team type passed to [type] initialization.")
+	team = new_team
 
 /datum/antagonist/miscreant/get_team()
-	return miscreant_team
+	return team
 
-/datum/antagonist/miscreant/get_admin_commands()
-	. = ..()
-	.["Move to Team"] = CALLBACK(src, PROC_REF(admin_move))
-	//.["Move to New Team"] = CALLBACK(src, PROC_REF(admin_move_to_new))
+/datum/antagonist/miscreant/on_gain()
+	objectives += team.objectives
+	finalize_miscreant()
 
-/datum/antagonist/miscreant/proc/admin_move(mob/admin)
-	var/list/miscreant_teams = list()
-	for(var/datum/team/miscreants/team in GLOB.antagonist_teams)
-		miscreant_teams += team
-	if(!(miscreant_teams.len > 1))
-		to_chat(admin, span_userdanger("Cannot move miscreant when one or fewer teams exist."))
-		return
+	if (team.miscreants_left <= 0)
+		return ..()
 
-	var/datum/team/miscreants/destination_team = tgui_input_list(admin, "Select a destination team for the miscreant.", "Miscreant destination team?", miscreant_teams)
-	if(!destination_team || (destination_team == miscreant_team))
-		return
-	//Remove old team info
-	owner.objectives -= miscreant_team.objectives
-	miscreant_team.members -= owner
-	//Add new team info
-	destination_team.members += owner
-	owner.objectives += destination_team.objectives
-	//Announce the new info to the player
-	handle_announcements(destination_team)
+	var/mob/living/carbon/carbon_owner = owner.current
+	if (!istype(carbon_owner))
+		return ..()
 
-	//Log the move
-	var/datum/mind/O = owner
-	message_admins("[key_name_admin(admin)] has moved miscreant [O] to team [destination_team].")
-	log_admin("[key_name(admin)] has moved miscreant [O] to team [destination_team].")
+	grant_conversion_skills()
+	return ..()
 
-	//Request permission to delete empty team
-	if(!miscreant_team.members.len)
-		var/delete_empty_team = FALSE
-		var/admin_choice = tgui_alert(admin, "Miscreant origin team ([miscreant_team]) has no members. Delete it?", "Delete origin team?", list("Yes", "No"))
+/datum/antagonist/miscreant/on_removal()
+	remove_conversion_skills()
+	return ..()
 
-		if(admin_choice == "Yes")
-			delete_empty_team = TRUE
+/// Give us the ability to add another miscreant
+/datum/antagonist/miscreant/proc/grant_conversion_skills()
+	var/datum/action/cooldown/miscreant_handshake/shaker = new
 
-		if(delete_empty_team)
-			message_admins("[key_name_admin(admin)] has deleted miscreant team [miscreant_team].")
-			log_admin("[key_name(admin)] has deleted miscreant team [miscreant_team].")
-			QDEL_NULL(miscreant_team)
+	shaker.Grant(owner)
+	shaker_ref = WEAKREF(shaker)
 
-	//Update the miscreant_team var
-	miscreant_team = destination_team
-
-/datum/antagonist/miscreant/ui_static_data(mob/user)
-	var/list/data = list()
-	data["antag_name"] = name
-	data["objectives"] = ()
-	data["miscreant_squad"] = get_miscreant_squad()
-	return data
+/// Take away the ability to add more miscreants
+/datum/antagonist/miscreant/proc/remove_conversion_skills()
+	var/datum/action/cooldown/miscreant_handshake/shaker = shaker_ref?.resolve()
+	if (!isnull(shaker))
+		QDEL_NULL(shaker)
+	shaker = null
 
 /datum/antagonist/miscreant/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(preview_outfit)
@@ -170,3 +91,6 @@
 
 	return assistant_icon
 
+/datum/antagonist/miscreants/proc/finalize_miscreant()
+	play_stinger()
+	team.update_name()

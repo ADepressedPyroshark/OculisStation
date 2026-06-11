@@ -27,7 +27,7 @@
 /obj/item/slapper/secret_handshake/proc/attempt_join_gang(mob/living/user)
 	if(!user?.mind)
 		return
-	var/datum/antagonist/miscreant/is_miscreant = user.mind.has_antag_datum(/datum/antagonist/gang)
+	var/datum/antagonist/miscreant/is_miscreant = user.mind.has_antag_datum(/datum/antagonist/miscreant)
 	var/real_name_backup = user.real_name
 	if(is_miscreant)
 		return
@@ -51,3 +51,58 @@
 	team_to_use = owner_gang_datum.my_gang
 	attempt_join_gang(taker)
 	qdel(src)
+
+/datum/action/cooldown/miscreant_handshake
+	name = "Induct via Secret Handshake"
+	desc = "Teach new recruits the Secret Handshake to join."
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "recruit"
+	icon_icon = 'modular_oculis/modules/miscreants/icons/miscreant_actions.dmi'
+	cooldown_time = 300
+	/// The miscreant antagonist datum of the "owner" of this action.
+	var/datum/antagonist/gang/my_gang_datum
+
+/datum/action/cooldown/miscreant_handshake/Activate(atom/target)
+	if(!my_gang_datum)
+		CRASH("[type] was created without a linked miscreant datum!")
+
+	if(!ishuman(owner))
+		return FALSE
+
+	StartCooldown(10 SECONDS)
+	offer_handshake()
+	StartCooldown()
+	return TRUE
+
+/*
+ * Equip a handshake slapper and offer it to people nearby.
+ */
+/datum/action/cooldown/miscreant_handshake/proc/offer_handshake()
+	var/mob/living/carbon/human/human_owner = owner
+	if(human_owner.stat != CONSCIOUS || human_owner.incapacitated())
+		return FALSE
+
+	var/obj/item/hand_item/slapper/secret_handshake/secret_handshake_item = new(owner)
+	if(owner.put_in_hands(secret_handshake_item))
+		to_chat(owner, span_notice("You ready your secret handshake."))
+	else
+		qdel(secret_handshake_item)
+		to_chat(owner, span_warning("You're incapable of performing a handshake in your current state."))
+		return FALSE
+	owner.visible_message(
+		span_notice("[human_owner] is offering to induct people into  your squad."),
+		span_notice("You offer to induct people into your squad."),
+		vision_distance = 2,
+		)
+	if(human_owner.has_status_effect(/datum/status_effect/offering/secret_handshake))
+		return FALSE
+	if(!(locate(/mob/living/carbon) in orange(1, owner)))
+		owner.visible_message(
+			span_danger("[human_owner] offers to induct people into their squad, but nobody was around."),
+			span_warning("You offer to induct people into your squad, but nobody is around."),
+			vision_distance = 2,
+			)
+		return FALSE
+
+	human_owner.apply_status_effect(/datum/status_effect/offering/secret_handshake, secret_handshake_item)
+	return TRUE
