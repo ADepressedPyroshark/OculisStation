@@ -9,6 +9,8 @@
 	icon_state = "staffofanimation"
 	inhand_icon_state = "staffofanimation"
 
+	///If the world.time is above this, it wont work. Charging requires whacking the necropolis nest
+	var/staff_time = 0
 
 /obj/item/ash_staff/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!user.mind.has_antag_datum(/datum/antagonist/ashwalker))
@@ -30,6 +32,10 @@
 		target_turf.ChangeTurf(/turf/open/lava/smooth/lava_land_surface)
 		to_chat(user, span_notice("[src] sparks, corrupting the area too far!"))
 		return
+
+	if(world.time > staff_time)
+		to_chat(user, span_warning("[src] has had its permission expire from the necropolis!"))
+		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, 2 SECONDS, target = target_turf))
 		to_chat(user, span_warning("[src] had their casting cut short!"))
