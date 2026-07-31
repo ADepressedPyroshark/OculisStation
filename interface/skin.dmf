@@ -18,7 +18,7 @@ window "mainwindow"
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
-		icon = 'modular_iris\\master_files\\icons\\ui_icons\\common\\oculis_logo_32.png'
+		icon = 'modular_nova\\master_files\\icons\\ui_icons\\common\\nova_logo_32.png'
 		macro = "default"
 	elem "split"
 		type = CHILD
@@ -77,7 +77,7 @@ window "mapwindow"
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
 		style = "img.icon { width: auto; height: auto } .center { text-align: center; } .maptext { font-family: 'Grand9K Pixel'; font-size: 6pt; -dm-text-outline: 1px black; color: white; line-height: 1.0; } .command_headset { font-weight: bold; } .context { font-family: 'Pixellari'; font-size: 12pt; -dm-text-outline: 1px black; }  .subcontext { font-family: 'TinyUnicode'; font-size: 12pt; line-height: 0.75; } .small { font-family: 'Spess Font'; font-size: 6pt; line-height: 1.4; } .big { font-family: 'Pixellari'; font-size: 12pt; } .reallybig { font-size: 12pt; } .extremelybig { font-size: 12pt; } .greentext { color: #00FF00; font-size: 6pt; } .redtext { color: #FF0000; font-size: 6pt; } .clown { color: #FF69BF; font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-family: 'Spess Font'; font-size: 6pt; line-height: 1.4; }"
-	elem "status_bar"
+    elem "status_bar"
 		type = LABEL
 		pos = 0,470
 		size = 128x10
@@ -89,7 +89,7 @@ window "mapwindow"
 		saved-params = ""
 		text = ""
 		align = left
-	elem "nova_title_browser"
+    elem "nova_title_browser"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
@@ -100,6 +100,15 @@ window "mapwindow"
 		is-disabled = true
 		saved-params = ""
 		auto-format = false
+	elem "escape_menu"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = none
+		inner-background-color = transparent
+		is-visible = false
 
 window "info_and_buttons"
 	elem "info_and_buttons"
@@ -128,82 +137,87 @@ window "infobuttons"
 	elem "infobuttons"
 		type = MAIN
 		pos = 291,0
-		size = 640x30
+		size = 676x30
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "changelog"
+		outer-size = 692x88
+		outer-pos = 291,0
+		inner-size = 676x30
+		inner-pos = 8,31
+		screen-size = 1920x1040
+	elem "options"
 		type = BUTTON
 		pos = 0,5
-		size = 85x25
+		size = 88x27
 		anchor1 = 0,0
-		anchor2 = 14,100
+		anchor2 = 15,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Changelog"
-		command = "changelog"
-	elem "rules"
+		text = "Menu"
+		command = ".winset \"mapwindow.escape_menu.is-visible=true?mapwindow.escape_menu.is-visible=false:mapwindow.escape_menu.is-visible=true\"\n.output mapwindow.escape_menu:update %7B%22type%22%3A%22toggle%22%2C%22payload%22%3Anull%7D"
+	elem "hotkeys"
 		type = BUTTON
-		pos = 90,5
-		size = 85x25
-		anchor1 = 14,0
+		pos = 92,5
+		size = 88x27
+		anchor1 = 15,0
 		anchor2 = 29,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Rules"
-		command = "rules"
-	elem "wiki"
+		text = "Hotkeys"
+		command = "Hotkeys-Help"
+	elem "emotes"
 		type = BUTTON
-		pos = 180,5
-		size = 85x25
+		pos = 185,5
+		size = 88x27
 		anchor1 = 29,0
 		anchor2 = 43,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Wiki"
-		command = "wiki"
-	elem "github"
-		type = BUTTON
-		pos = 270,5
-		size = 85x25
-		anchor1 = 43,0
-		anchor2 = 57,100
-		background-color = none
-		saved-params = "is-checked"
-		text = "GitHub"
-		command = "github"
+		text = "Emotes"
+		command = "Emote-Panel"
 	elem "fullscreen-toggle"
 		type = BUTTON
-		pos = 360,5
-		size = 85x25
-		anchor1 = 57,0
-		anchor2 = 72,100
+		pos = 277,5
+		size = 88x27
+		anchor1 = 43,0
+		anchor2 = 57,100
 		background-color = none
 		saved-params = "is-checked"
 		text = "Fullscreen"
 		command = "fullscreen"
 	elem "reconnect"
 		type = BUTTON
-		pos = 450,5
-		size = 85x25
-		anchor1 = 72,0
-		anchor2 = 86,100
+		pos = 369,5
+		size = 88x27
+		anchor1 = 57,0
+		anchor2 = 71,100
 		background-color = none
 		saved-params = "is-checked"
 		text = "Reconnect"
 		command = ".reconnect"
-	elem "report-issue"
+	elem "nova-connect-to-relay"
 		type = BUTTON
-		pos = 540,5
-		size = 94x25
-		anchor1 = 86,0
-		anchor2 = 100,100
+		pos = 461,5
+		size = 95x27
+		anchor1 = 71,0
+		anchor2 = 85,100
 		background-color = none
 		saved-params = "is-checked"
-		text = "Report Issue"
-		command = "report-issue"
+		text = "Use Relay"
+		command = "connect-to-relay"
+	elem "chat"
+		type = BUTTON
+		pos = 560,5
+		size = 112x27
+		anchor1 = 85,0
+		anchor2 = 99,100
+		background-color = none
+		saved-params = "is-checked"
+		text = "Toggle Stat Panel"
+		command = "toggle-stat-panel"
 
 window "infowindow"
 	elem "infowindow"
