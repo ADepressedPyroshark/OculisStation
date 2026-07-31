@@ -44,7 +44,7 @@
 		/obj/item/ai_module/law/supplied/protect_station,
 		/obj/item/ai_module/law/supplied/quarantine,
 		/obj/item/ai_module/law/core/full/yesman,
-		/obj/item/ai_module/law/core/full/dagothbot, // NOVA EDIT ADDITION
+		// /obj/item/ai_module/law/core/full/dagothbot, // NOVA EDIT ADDITION
 		/obj/item/ai_module/law/core/full/texas, // NOVA EDIT ADDITION
 		/obj/item/ai_module/law/core/full/godcomplex // OCULIS EDIT ADDITION
 	)

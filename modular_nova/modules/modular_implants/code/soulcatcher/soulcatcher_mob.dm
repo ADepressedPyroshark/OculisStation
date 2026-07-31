@@ -54,8 +54,6 @@
 	soulcatcher_action.soulcatcher_user_component = WEAKREF(user_component)
 
 	// These verbs are overridden below but they're not hidden by default. hide them from the verb panel too
-	remove_verb(src, /mob/living/verb/subtle)
-	remove_verb(src, /mob/living/verb/subtler)
 	remove_verb(src, /mob/verb/whisper_verb)
 	remove_verb(src, /mob/living/verb/container_emote)
 

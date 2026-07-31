@@ -7409,8 +7409,6 @@
 #include "modular_iris\master_files\code\modules\clothing\gloves\special.dm"
 #include "modular_iris\master_files\code\modules\clothing\suits\special.dm"
 #include "modular_iris\master_files\code\modules\job\job_types\_job.dm"
-#include "modular_iris\master_files\code\modules\mob\basic\alligator\alligator_controller.dm"
-#include "modular_iris\master_files\code\modules\mob\basic\alligator\steppy.dm"
 #include "modular_iris\master_files\code\modules\mob\basic\goose\andy.dm"
 #include "modular_iris\master_files\code\modules\mob\living\blood_types.dm"
 #include "modular_iris\master_files\code\modules\mob\living\carbon\death.dm"

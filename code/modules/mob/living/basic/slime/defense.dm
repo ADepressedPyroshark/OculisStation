@@ -30,11 +30,11 @@
 		return ITEM_INTERACT_SUCCESS
 
 	// IRIS ADDITION START -- UNIQUE SLIMES
-	if(istype(attacking_item, /obj/item/crusher_trophy/legion_skull))
-		unique_mutate(SLIME_TYPE_BLACK, /datum/slime_type/unique/darkgrey, attacking_item)
+	if(istype(tool, /obj/item/crusher_trophy/legion_skull))
+		unique_mutate(SLIME_TYPE_BLACK, /datum/slime_type/unique/darkgrey, tool)
 		return
 
-	if(istype(attacking_item, /obj/item/food/grown/melonlike/holymelon))
+	if(istype(tool, /obj/item/food/grown/melonlike/holymelon))
 		var/list/turfs = RANGE_TURFS(1, get_turf(src))
 		var/grass_amount = 0
 		var/fairygrass_amount = 0
@@ -45,7 +45,7 @@
 				grass_amount++
 
 		if(grass_amount > 2 && fairygrass_amount > 2)
-			unique_mutate(SLIME_TYPE_GREEN, /datum/slime_type/unique/lightgreen, attacking_item)
+			unique_mutate(SLIME_TYPE_GREEN, /datum/slime_type/unique/lightgreen, tool)
 		return
 	// IRIS ADDITION END
 	//Checks if the item passes through the slime first. Safe items can be used simply

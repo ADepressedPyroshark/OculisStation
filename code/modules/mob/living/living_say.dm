@@ -258,11 +258,8 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		return TRUE
 
 	// OCULIS EDIT ADDITION START: moved softspoken check to after radio
-	if(HAS_TRAIT(src, TRAIT_SOFTSPOKEN) && !HAS_TRAIT(src, TRAIT_SIGN_LANG) && !message_mods[WHISPER_MODE]) // softspoken trait only applies to spoken languages
-		message_range = 1
+	if(HAS_TRAIT(src, TRAIT_FORCE_WHISPER) && !HAS_TRAIT(src, TRAIT_SIGN_LANG)) // softspoken trait only applies to spoken languages
 		message_mods[WHISPER_MODE] = MODE_WHISPER
-		message_mods[SAY_MOD_VERB] = say_mod(message, message_mods)
-		spans |= SPAN_ITALICS
 	// OCULIS EDIT ADDITION END
 
 	if(radio_return & ITALICS)
