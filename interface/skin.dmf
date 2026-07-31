@@ -18,7 +18,7 @@ window "mainwindow"
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
-		icon = 'modular_nova\\master_files\\icons\\ui_icons\\common\\nova_logo_32.png'
+		icon = 'modular_iris\\master_files\\icons\\ui_icons\\common\\oculis_logo_32.png'
 		macro = "default"
 	elem "split"
 		type = CHILD
@@ -198,16 +198,6 @@ window "infobuttons"
 		saved-params = "is-checked"
 		text = "Reconnect"
 		command = ".reconnect"
-	elem "nova-connect-to-relay"
-		type = BUTTON
-		pos = 461,5
-		size = 95x27
-		anchor1 = 71,0
-		anchor2 = 85,100
-		background-color = none
-		saved-params = "is-checked"
-		text = "Use Relay"
-		command = "connect-to-relay"
 	elem "chat"
 		type = BUTTON
 		pos = 560,5
