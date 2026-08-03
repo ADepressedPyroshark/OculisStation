@@ -1,0 +1,5 @@
+author: "epicgamer545"
+delete-after: True
+changes:
+  - rscadd: "Roboticists now have access to medical record consoles."
+  - map: "Medical record consoles have been installed in all Robotics Wings, except Kilostation."
