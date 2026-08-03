@@ -1,0 +1,6 @@
+author: "ManiacalAnxiety"
+delete-after: True
+changes:
+  - rscadd: "Completely revamps the space-variant of the syndicate listening post, giving it a new structure to work with."
+  - config: "Removed the old syndicate listening post by adding it to the space ruin blacklist."
+  - balance: "Removed the esword and makarov from the space-variant comms agent in favor of a gun case in the structure."
