@@ -1,0 +1,6 @@
+author: "xn-zn8h"
+delete-after: True
+changes:
+  - rscadd: "added a cool jacket and dusters from Shiptest/Pentest to loadout"
+  - bugfix: "fixed all the wrongly displayed loadout items"
+  - bugfix: "fixed warden's hat showing up in glasses tab"
