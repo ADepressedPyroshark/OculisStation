@@ -1,0 +1,5 @@
+author: "keygenpie"
+delete-after: True
+changes:
+  - rscadd: "New space pirate portal-storm variant"
+  - rscadd: "New netherworld portal-storm variant"
