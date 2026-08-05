@@ -113,11 +113,6 @@ export class PrimaryView extends Component {
                       onClick={() => {
                         const result = sanitizeText(textAreaText, false);
                         if (typeof result === 'object' && result !== null) {
-                          act('add_text', {
-                            text: result.sanitized,
-                            blocked_summary: result.blockedSummary,
-                          });
-                        } else {
                           act('add_text', { text: result });
                         }
                         setTextAreaText('');

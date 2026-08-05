@@ -301,7 +301,6 @@ function validateCssStyle(styleValue: string): {
  * @param tags - List of allowed HTML tags
  * @param forbidAttr - List of forbidden HTML attributes
  * @param advTags - List of advanced HTML tags allowed for trusted sources
- * @param ignoreSummary - Makes it so that it will always just return the sanitized string.
  * @returns Sanitized HTML string or object with sanitized content and blocked summary
  */
 export function sanitizeText(
@@ -310,7 +309,6 @@ export function sanitizeText(
   tags = defTag,
   forbidAttr = forbiddenAttr,
   advTags = advTag,
-  ignoreSummary = false,
 ): string {
   // This is VERY important to think first if you NEED
   // the tag you put in here. We are pushing all this
