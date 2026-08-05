@@ -65,7 +65,7 @@
 		// NOVA EDIT ADDITION END
 		// IRIS EDIT ADDITION START - NTNRC (ported from https://github.com/DopplerShift13/DopplerShift/pull/371)
 		if(IRC_CHANNEL)
-			client.mob.irc_verb(entry)
+			INVOKE_ASYNC(client.mob, TYPE_PROC_REF(/mob, irc_verb), entry)
 		// IRIS EDIT ADDITION END
 	return FALSE
 
