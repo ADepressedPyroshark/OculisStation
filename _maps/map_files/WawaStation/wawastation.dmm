@@ -24962,10 +24962,6 @@
 /area/station/medical/exam_room)
 "iJg" = (
 /obj/structure/table,
-/obj/item/ai_module/law/reset{
-	pixel_x = 2;
-	pixel_y = 8
-	},
 /obj/item/ai_module/law/supplied/freeform,
 /turf/open/floor/circuit/red,
 /area/station/ai/upload/chamber)
