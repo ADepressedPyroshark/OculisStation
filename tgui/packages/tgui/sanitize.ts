@@ -292,29 +292,6 @@ function validateCssStyle(styleValue: string): {
   };
 }
 
-type SanitizedTextSummary = {
-  sanitized: string;
-  blockedSummary?: string;
-};
-
-export function sanitizeText(
-  input: string,
-  advHtml?: boolean,
-  tags?: string[],
-  forbidAttr?: string[],
-  advTags?: string[],
-  ignoreSummary?: false,
-): string | SanitizedTextSummary;
-
-export function sanitizeText(
-  input: string,
-  advHtml: boolean | undefined,
-  tags: string[] | undefined,
-  forbidAttr: string[] | undefined,
-  advTags: string[] | undefined,
-  ignoreSummary: true,
-): string;
-
 /**
  * Feed it a string and it should spit out a sanitized version.
  * For paper content, returns an object with sanitized HTML and blocked content summary for logging.
@@ -334,7 +311,7 @@ export function sanitizeText(
   forbidAttr = forbiddenAttr,
   advTags = advTag,
   ignoreSummary = false,
-): string | SanitizedTextSummary {
+): string {
   // This is VERY important to think first if you NEED
   // the tag you put in here. We are pushing all this
   // though dangerouslySetInnerHTML and even though
@@ -366,14 +343,6 @@ export function sanitizeText(
     ALLOWED_ATTR: allowedAttr,
     FORBID_ATTR: forbiddenAttr,
   });
-
-  // If we have blocked CSS items, return object for admin logging
-  if (!ignoreSummary && blockedCssItems.length > 0) {
-    return {
-      sanitized: sanitized,
-      blockedSummary: `Blocked CSS: ${blockedCssItems.join(', ')}`,
-    };
-  }
 
   return sanitized;
 }
