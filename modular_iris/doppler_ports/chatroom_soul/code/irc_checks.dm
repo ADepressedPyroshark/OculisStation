@@ -1,4 +1,4 @@
-/mob/living/proc/irc_checks(message)
+/mob/proc/irc_checks(message)
 	if(!length(message))
 		return FALSE
 

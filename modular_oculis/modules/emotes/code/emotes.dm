@@ -20,6 +20,9 @@
 		return ..()
 	return FALSE
 
+GAME_VERB_PROC(/mob, emote_roll2d6, "| Roll 2d6 |", "Emotes")
+	src.emote("roll2d6", intentional = TRUE)
+
 /datum/emote/roll2d6
 	key = "roll2d6"
 	affected_by_pitch = FALSE

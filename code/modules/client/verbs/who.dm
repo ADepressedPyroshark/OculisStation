@@ -67,6 +67,7 @@ GAME_VERB(/client, who, "Who", "OOC")
 	msg += "<b>Total Players: [length(Lines)]</b>"
 	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_INFO)
 
+/* // OCULIS EDIT REMOVAL START
 GAME_VERB(/client, adminwho, "Adminwho", "Admin")
 
 	var/list/lines = list()
@@ -77,6 +78,7 @@ GAME_VERB(/client, adminwho, "Adminwho", "Admin")
 	lines += payload_string
 
 	to_chat(src, fieldset_block(span_bold(header), jointext(lines, "\n"), "boxed_message"), type = MESSAGE_TYPE_INFO)
+*/ // OCULIS EDIT REMOVAL END
 
 /// Proc that generates the applicable string to dispatch to the client for adminwho.
 /client/proc/generate_adminwho_string()

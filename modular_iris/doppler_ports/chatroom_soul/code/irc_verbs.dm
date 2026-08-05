@@ -1,4 +1,4 @@
-GAME_VERB(/mob/living, irc_verb, "IRC", message)
+GAME_VERB(/mob, irc_verb, "IRC", "IC", message as message)
 	var/obj/item/modular_computer/our_computer = irc_checks(message) // yeah our check returns a modular computer object, so what, HUH???
 	if (!message || !our_computer)
 		return
