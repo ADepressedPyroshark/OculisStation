@@ -3,12 +3,8 @@
 	var/awho_count_since = 0
 	COOLDOWN_DECLARE(adminwho_alert_cooldown)
 
-/client/adminwho()
-	set category = "Admin"
-	set name = "Adminwho"
-
+GAME_VERB(/client, adminwho, "Adminwho", "Admin")
 	. = ..()
-
 	if(COOLDOWN_FINISHED(src, adminwho_alert_cooldown) && !is_admin(src))
 		var/laststring = "has checked adminwho."
 		if(awho_count_since > 0)

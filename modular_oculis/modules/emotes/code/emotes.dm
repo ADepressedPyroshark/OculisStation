@@ -20,11 +20,6 @@
 		return ..()
 	return FALSE
 
-/mob/proc/emote_roll2d6()
-	set name = "| Roll 2d6 |"
-	set category = "Emotes"
-	usr.emote("roll2d6", intentional = TRUE)
-
 /datum/emote/roll2d6
 	key = "roll2d6"
 	affected_by_pitch = FALSE
