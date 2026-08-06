@@ -149,6 +149,11 @@
 			if(glasses)
 				return
 			glasses = equipping
+			// OCULIS EDIT ADDITION START
+			var/obj/item/clothing/glasses/gotten_glasses = glasses
+			if(gotten_glasses.vision_flags || gotten_glasses.invis_override || gotten_glasses.invis_view || !isnull(gotten_glasses.lighting_cutoff))
+				REMOVE_TRAIT(src, TRAIT_ILLITERATE, FARSIGHT_TRAIT) //ORBSTATION: remove illiteracy iff it's from the Farsighted quirk
+			// OCULIS EDIT ADDITION END
 			update_worn_glasses()
 		if(ITEM_SLOT_GLOVES)
 			if(gloves)
@@ -274,6 +279,10 @@
 		glasses = null
 		if(!QDELETED(src))
 			update_worn_glasses()
+			// OCULIS EDIT ADDITION START
+			if(HAS_TRAIT(src, TRAIT_FARSIGHT))
+				ADD_TRAIT(src, TRAIT_ILLITERATE, FARSIGHT_TRAIT)
+			// OCULIS EDIT ADDITION END
 	else if(item_dropping == ears)
 		ears = null
 		if(!QDELETED(src))
