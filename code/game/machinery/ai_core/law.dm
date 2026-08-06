@@ -586,7 +586,7 @@
 		Silicons can be manually linked and unlinked from this location (rack). \
 		Newly constructed silicons will automatically link to this rack unless they are supplied another rack via multitool.<br><br>\
 		People can still subvert the AI by constructing \"broadcast module racks\", so don't get complacent.<br><br>\
-		Refer any further questions to Central Command. Godspeed."
+		Refer any further questions to Sectorial Command. Godspeed." // OCULIS EDIT, ORIGINAL: Refer any further questions to Central Command. Godspeed."
 
 // Broadcasts laws to another law rack, can't link directly to AIs
 /obj/machinery/ai_law_rack/broadcaster
