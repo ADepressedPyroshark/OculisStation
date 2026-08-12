@@ -319,10 +319,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			update_preference(GLOB.preference_entries[/datum/preference/choiced/background_state], params["new_background"])
 			return TRUE
 
-		if ("open_belly_prefs")
-			GLOB.erp_belly_prefshelper.ui_interact(usr)
-			return TRUE
-
 		if ("set_tricolor_preference")
 			var/requested_preference_key = params["preference"]
 			var/index_key = params["value"]
