@@ -16,7 +16,6 @@ import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { sendAct as act } from '../events/act';
 import { Window } from '../layouts';
-import { LobbyNotices } from './common/oculis/LobbyNotices';
 
 const icons = {
   add: { icon: 'check-circle', color: 'green' },
