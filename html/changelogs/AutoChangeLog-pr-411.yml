@@ -1,0 +1,6 @@
+author: "ManiacalAnxiety"
+delete-after: True
+changes:
+  - rscadd: "Added 12 Titles, affecting CMO, Doctor, Roboticist, Curator, Bartender, and Paramedic."
+  - rscadd: "Added \"Nurse\" honorific to MD and \"EMR\", \"AEMT\" honorifics to Paramedic."
+  - qol: "Re-formatted MD, CMO, Paramedic, and Roboticist titles for easier reading."
