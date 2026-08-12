@@ -33,3 +33,7 @@
       (resulting in missing pixels from their uniforms in weird spots)
   - bugfix: fixed an issue where teshari accessories were not aligning to the correct
       spot
+2026-08-12:
+  XeonMations:
+  - bugfix: Moving a crate past a pixelshifted person will no longer cause their sprite
+      to move up.

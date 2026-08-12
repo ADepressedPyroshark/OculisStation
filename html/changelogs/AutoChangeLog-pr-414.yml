@@ -1,4 +1,0 @@
-author: "XeonMations"
-delete-after: True
-changes:
-  - bugfix: "Moving a crate past a pixelshifted person will no longer cause their sprite to move up."
