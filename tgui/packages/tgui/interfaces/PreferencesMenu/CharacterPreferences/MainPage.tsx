@@ -524,23 +524,14 @@ export function MainPage(props: MainPageProps) {
     delete nonContextualPreferences.random_name;
   }
   // NOVA EDIT ADDITION BEGIN: SWAPPABLE PREF MENUS
-  const erpPreferences = {
-    ...data.character_preferences.erp,
-  };
-
   enum PrefPage {
     Visual, // The visual parts
     Profile, // Flavor Text, Age, Records, PDA ringtone, etc
-    ERP, // ERP Prefs
   }
 
   const [currentPrefPage, setCurrentPrefPage] = useState(PrefPage.Visual);
   const erpEnabled = !!data.erp_pref;
-  const filteredCurrentPrefPage =
-    currentPrefPage === PrefPage.ERP && !erpEnabled
-      ? PrefPage.Visual
-      : currentPrefPage;
-
+  const filteredCurrentPrefPage = currentPrefPage
   let prefPageContents;
   switch (filteredCurrentPrefPage) {
     case PrefPage.Visual:
@@ -569,19 +560,6 @@ export function MainPage(props: MainPageProps) {
         />
       );
       break;
-    case PrefPage.ERP:
-    prefPageContents = (
-      <PreferenceList
-        randomizations={getRandomization(
-          erpPreferences,
-          serverData,
-          randomBodyEnabled,
-        )}
-        preferences={erpPreferences}
-        maxHeight="auto"
-      />
-    );
-    break;
     default:
       exhaustiveCheck(filteredCurrentPrefPage);
   }
@@ -776,17 +754,6 @@ export function MainPage(props: MainPageProps) {
                   Character Lore
                 </PageButton>
               </Stack.Item>
-             {erpEnabled && (
-              <Stack.Item grow={0.5}>
-                <PageButton
-                  currentPage={currentPrefPage}
-                  page={PrefPage.ERP}
-                  setPage={setCurrentPrefPage}
-                >
-                <Icon name="heart" />
-                </PageButton>
-              </Stack.Item>
-            )}
             </Stack>
             {prefPageContents}
           </Stack>
