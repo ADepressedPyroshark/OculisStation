@@ -8,7 +8,6 @@ import {
   Button,
   Floating,
   Input,
-  Icon, // NOVA EDIT ADDITION
   LabeledList,
   Section,
   Stack,

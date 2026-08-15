@@ -245,16 +245,15 @@
   vinylspiders:
   - bugfix: birdboat will no longer try to eat everything in sight at all times, in
       exchange their range for noticing food has been increased...
+  - bugfix: fixed an issue where female teshari were getting dimorphic gender shaping
+      (resulting in missing pixels from their uniforms in weird spots)
+  - bugfix: fixed an issue where teshari accessories were not aligning to the correct
+      spot
   Hatterhat:
   - balance: Sterilizine now cleanses gaseous miasma into gaseous oxygen when exposed
       to turfs (e.g. via smoke or foam).
   Hollandasie:
   - rscadd: Adds alt variants of shot mammal snout
-  vinylspiders:
-  - bugfix: fixed an issue where female teshari were getting dimorphic gender shaping
-      (resulting in missing pixels from their uniforms in weird spots)
-  - bugfix: fixed an issue where teshari accessories were not aligning to the correct
-      spot
 2026-08-08:
   Gboster-0:
   - code_imp: fixed chasms ignoring lattices on top of them in some scenario's, creating
