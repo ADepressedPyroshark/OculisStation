@@ -47,8 +47,8 @@
 	prerequisite_nodes = list(/datum/techweb_node/mod_anomaly)
 	unlocked_designs = list(
 		/datum/design/module/mod_storage_bluespace,
-		/datum/design/module/energy_shield/nanotrasen,
-		/datum/design/module/medbeam/nanotrasen,
+		/datum/design/module/energy_shield_nanotrasen,
+		/datum/design/module/medbeam_nanotrasen,
 		)
 	required_items_to_unlock = list(/obj/item/mod/module/energy_shield/nanotrasen)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS * 2)

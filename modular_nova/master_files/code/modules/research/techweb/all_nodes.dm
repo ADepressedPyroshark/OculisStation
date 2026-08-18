@@ -36,6 +36,9 @@
 		/datum/design/synth_l_d_leg,
 		/datum/design/synth_r_d_leg,
 		/datum/design/synth_diy,
+		/datum/design/synth_construction, // OCULIS EDIT ADDITION START
+		/datum/design/synth_positronic,
+		/datum/design/power_cord,  // OCULIS EDIT ADDITION END
 	)
 
 /datum/techweb_node/android_organs

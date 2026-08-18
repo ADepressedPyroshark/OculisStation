@@ -22,22 +22,22 @@
 		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2.5,
-		/datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 1.5,
 		)
 
 	build_path = /obj/item/mod/module/storage/bluespace/nerfed
 
-/datum/design/module/energy_shield/nanotrasen
+/datum/design/module/energy_shield_nanotrasen
 	name = "Energy Shield Module"
 	materials = list(
-		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2,
-		/datum/material/gold =SHEET_MATERIAL_AMOUNT * 3.5,
-		/datum/material/plasma =SHEET_MATERIAL_AMOUNT * 3.5,
-		/datum/material/diamond =SHEET_MATERIAL_AMOUNT * 4,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 3.5,
+		/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 3.5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 4,
 	)
 	build_path = /obj/item/mod/module/energy_shield/nanotrasen
 
-/datum/design/module/medbeam/nanotrasen
+/datum/design/module/medbeam_nanotrasen
 	name = "Medical Beam Module"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2,
