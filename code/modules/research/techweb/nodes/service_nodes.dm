@@ -68,7 +68,7 @@
 		/datum/design/board/announcement_system,
 		/datum/design/board/cargo,
 		/datum/design/board/cargorequest,
-		/datum/design/board/cargo_bounty, // OCULIS EDIT ADDITION
+		/datum/design/board/bounty, // OCULIS EDIT ADDITION
 		/datum/design/board/med_data,
 		/datum/design/board/crewconsole,
 		/datum/design/board/bankmachine,

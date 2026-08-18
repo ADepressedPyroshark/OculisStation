@@ -8,7 +8,6 @@
 
 /datum/design/organic_bloodbag_nabber
 	name = "H Blood Pack"
-	id = "organic_bloodbag_nabber"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/reagent_containers/blood/nabber
@@ -27,7 +26,6 @@
 
 /datum/design/organic_bloodbag_vox
 	name = "VO Blood Pack"
-	id = "organic_bloodbag_vox"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/reagent_containers/blood/vox
@@ -46,7 +44,6 @@
 
 /datum/design/organic_bloodbag_insect
 	name = "I Blood Pack"
-	id = "organic_bloodbag_insect"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/reagent_containers/blood/insect
@@ -65,7 +62,6 @@
 
 /datum/design/organic_bloodbag_skrell
 	name = "SK Blood Pack"
-	id = "organic_bloodbag_skrell"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
 	build_path = /obj/item/reagent_containers/blood/skrell

@@ -1,7 +1,6 @@
 /datum/design/diskplantgene
 	name = "Plant Data Disk"
 	desc = "A disk for storing plant genetic data."
-	id = "diskplantgene"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=200, /datum/material/glass = 100)
 	build_path = /obj/item/disk/plantgene
@@ -11,7 +10,6 @@
 /datum/design/spraycan/roboticist
 	name = "Roboticist Spraycan"
 	desc = "Paint for restyling unattached robotic limbs. Sadly doesn't shine like chrome."
-	id = "spraycan_roboticist"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/toy/crayon/spraycan/roboticist
@@ -20,10 +18,9 @@
 
 /datum/design/module/mod_storage_bluespace
 	name = "Bluespace Storage Module"
-	id = "mod_storage_bluespace"
 	materials = list(
-		/datum/material/gold =SHEET_MATERIAL_AMOUNT * 1.5,
-		/datum/material/diamond =SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/gold = SHEET_MATERIAL_AMOUNT * 1.5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1.5,
 		/datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2.5,
 		/datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5,
 		)
@@ -32,7 +29,6 @@
 
 /datum/design/module/energy_shield/nanotrasen
 	name = "Energy Shield Module"
-	id = "mod_shield_nt"
 	materials = list(
 		/datum/material/titanium =SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/gold =SHEET_MATERIAL_AMOUNT * 3.5,
@@ -43,7 +39,6 @@
 
 /datum/design/module/medbeam/nanotrasen
 	name = "Medical Beam Module"
-	id = "mod_medbeam_nt"
 	materials = list(
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3,
