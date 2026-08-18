@@ -392,3 +392,9 @@
   epicgamer545:
   - bugfix: On Wawastation, the robotics medical records console now is placed in
       the right spot (robotics) instead of near the holodeck.
+2026-08-18:
+  Shroopy:
+  - bugfix: Fixed expanded .38 speedloader crafting.
+  curiousbookshelf:
+  - bugfix: Fixes Social Anxiety blocking speech even when the block chance is set
+      to zero.

@@ -1,4 +1,0 @@
-author: "curiousbookshelf"
-delete-after: True
-changes:
-  - bugfix: "Fixes Social Anxiety blocking speech even when the block chance is set to zero."
