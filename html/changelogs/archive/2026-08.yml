@@ -398,3 +398,8 @@
   curiousbookshelf:
   - bugfix: Fixes Social Anxiety blocking speech even when the block chance is set
       to zero.
+2026-08-19:
+  XeonMations:
+  - rscadd: Added custom roll emote.
+  - rscdel: Removed old roll emotes.
+  - qol: By default, particle weather is set to be disabled.
