@@ -1,0 +1,4 @@
+author: "Skies-Of-Blue"
+delete-after: True
+changes:
+  - balance: "colour filters now affect held/equipped/stored items in addition to the standard game plane"
