@@ -403,3 +403,7 @@
   - rscadd: Added custom roll emote.
   - rscdel: Removed old roll emotes.
   - qol: By default, particle weather is set to be disabled.
+2026-08-20:
+  Skies-Of-Blue:
+  - balance: colour filters now affect held/equipped/stored items in addition to the
+      standard game plane
