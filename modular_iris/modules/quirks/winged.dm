@@ -10,5 +10,5 @@
 
 /datum/quirk/winged/add_unique(client/client_source)
 	. = ..()
-	var/obj/item/organ/wings/functional/gizzard/gizzard = new()
+	var/obj/item/organ/wings/gizzard/gizzard = new()
 	gizzard.mob_insert(quirk_holder)
