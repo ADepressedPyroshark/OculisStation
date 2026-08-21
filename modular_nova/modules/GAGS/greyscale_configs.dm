@@ -1465,13 +1465,13 @@
 	name = "Giant Scarf (Worn)"
 	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
-/datum/greyscale_config/virgin_killer_sweater
-	name = "Virgin Killer Sweater"
+/datum/greyscale_config/open_backed_sweater
+	name = "Open-Backed Sweater"
 	icon_file = 'modular_nova/master_files/icons/obj/clothing/under/skirts_dresses.dmi'
-	json_config = 'modular_nova/modules/GAGS/json_configs/pants_shorts_skirts_dresses/virgin_killer_sweater.json'
+	json_config = 'modular_nova/modules/GAGS/json_configs/pants_shorts_skirts_dresses/open_backed_sweater.json'
 
-/datum/greyscale_config/virgin_killer_sweater/worn
-	name = "Virgin Killer Sweater (Worn)"
+/datum/greyscale_config/open_backed_sweater/worn
+	name = "Open-Backed Sweater (Worn)"
 	icon_file = 'modular_nova/master_files/icons/mob/clothing/under/skirts_dresses.dmi'
 
 /datum/greyscale_config/mini_skirt

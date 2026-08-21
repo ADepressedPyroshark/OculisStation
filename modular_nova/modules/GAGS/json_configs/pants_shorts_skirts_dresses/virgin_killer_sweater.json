@@ -1,8 +1,8 @@
 {
-	"virgin_killer_sweater": [
+	"open_backed_sweater": [
 		{
 			"type": "icon_state",
-			"icon_state": "virgin_killer_sweater",
+			"icon_state": "open_backed_sweater",
 			"blend_mode": "overlay",
 			"color_ids": [1]
 		}
