@@ -1,0 +1,5 @@
+author: "curiousbookshelf"
+delete-after: True
+changes:
+  - map: "Added paramedic dispatch to Void Raptor"
+  - map: "Moved Void Raptor chemical storage closer to the rest of chemistry"
