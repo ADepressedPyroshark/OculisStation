@@ -9,6 +9,7 @@
 // wings are purely cosmetic and need the plain one to keep their chosen colors.
 /obj/item/organ/wings/custom
 	bodypart_overlay = /datum/bodypart_overlay/mutant/wings
+	flight_level = WINGS_FLIGHTLESS // OCULIS EDIT ADDITION
 
 /datum/bodypart_overlay/mutant/wings
 	color_source = ORGAN_COLOR_OVERRIDE

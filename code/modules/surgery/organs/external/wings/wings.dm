@@ -31,6 +31,8 @@
 
 	var/drift_force = DEFAULT_WING_FORCE
 
+	var/use_stamina = FALSE // OCULIS EDIT ADDITION - FUNCTIONAL WINGS
+
 ///Checks if the wings can soften short falls
 /obj/item/organ/wings/proc/can_soften_fall()
 	return TRUE
@@ -143,6 +145,10 @@
 	if(!can_fly())
 		toggle_flight(human)
 		return FALSE
+	// OCULIS EDIT ADDITION START
+	if(use_stamina)
+		human.adjust_stamina_loss(8)
+	// OCULIS EDIT ADDITION END
 	return TRUE
 
 ///Check if still eligible for active flight (wings covered, atmosphere too thin, etc)
