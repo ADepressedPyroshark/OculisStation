@@ -527,3 +527,8 @@
       accretion module, hopefully making it less of a miserable experience
   XeonMations:
   - balance: you can now get a maximum of 8 things per category in the loadouts menu
+2026-08-24:
+  XeonMations:
+  - bugfix: fixed the game not compiling
+  curiousbookshelf:
+  - map: Removed the extra set of Jaws of Recovery on Void Raptor
