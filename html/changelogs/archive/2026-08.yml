@@ -532,3 +532,7 @@
   - bugfix: fixed the game not compiling
   curiousbookshelf:
   - map: Removed the extra set of Jaws of Recovery on Void Raptor
+2026-08-25:
+  curiousbookshelf:
+  - map: Added paramedic dispatch to Void Raptor
+  - map: Moved Void Raptor chemical storage closer to the rest of chemistry
