@@ -1,0 +1,6 @@
+author: "Shroopy"
+delete-after: True
+changes:
+  - qol: "Removed the windows between the machines and the tables in the Void Raptor science office."
+  - bugfix: "Fixed Void Raptor xenobio's disposals."
+  - map: "Added 2 toolbelts to Tramstation's robotics."
