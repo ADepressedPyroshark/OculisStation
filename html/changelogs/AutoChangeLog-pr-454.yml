@@ -1,4 +1,0 @@
-author: "Shroopy"
-delete-after: True
-changes:
-  - bugfix: "Fixed Snowglobe's brig having a reinforced wall inside of a reinforced window."
