@@ -179,7 +179,9 @@
 	)
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/interdyne/green
+	//BEGIN OCULIS ADDITION EDIT
 	shoes = /obj/item/clothing/shoes/combat
+	//OCULIS ADDITION EDIT END
 	belt = /obj/item/modular_computer/pda/interdyne
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_hand = /obj/item/storage/toolbox/guncase/nova/carwo_large_case/sindano/evil
@@ -213,6 +215,9 @@
 /datum/outfit/interdyne_planetary_base/shaftminer
 	name = "Interdyne Shaft Miner"
 	uniform = /obj/item/clothing/under/syndicate/nova/interdyne/miner
+	//BEGIN OCULIS ADDITION EDIT
+	belt = /obj/item/modular_computer/pda/interdyne
+	//END OCULIS ADDITION EDIT
 	suit = /obj/item/clothing/suit/syndicate/interdyne_jacket
 	r_pocket = /obj/item/storage/bag/ore
 	// BEGIN IRIS EDIT: suit voucher
