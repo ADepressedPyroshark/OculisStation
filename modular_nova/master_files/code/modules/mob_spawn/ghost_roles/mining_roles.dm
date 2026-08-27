@@ -180,6 +180,7 @@
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/interdyne/green
 	shoes = /obj/item/clothing/shoes/combat
+	belt = /obj/item/modular_computer/pda/interdyne
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_hand = /obj/item/storage/toolbox/guncase/nova/carwo_large_case/sindano/evil
 	implants = list(/obj/item/implant/weapons_auth)

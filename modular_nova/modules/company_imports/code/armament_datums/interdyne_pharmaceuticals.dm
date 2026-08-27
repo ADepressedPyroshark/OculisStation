@@ -316,3 +316,11 @@
 	desc = "A less morally questionable device, useful in activating new cyborgs!"
 	contains = list(/obj/item/mmi/posibrain/syndie/interdyne)
 	cost = CARGO_CRATE_VALUE * 5
+
+//OCULIS EDIT ADDITION BEGINS
+/datum/supply_pack/companies/medical/interdyne/dynexil
+	name = "Interdyne Dynexil Supply"
+	desc = "A jerrycan of Interdyne's proprietary Dynexil stabilizing compound. Required for all Interdyne pharmaceutical formulations. Patent-protected."
+	cost = CARGO_CRATE_VALUE * 10
+	contains = list(/obj/item/reagent_containers/cup/jerrycan/interdyne_dynexil = 1)
+//OCULIS EDIT ADDITION ENDS
