@@ -10,9 +10,9 @@
 
 		{
 			"group_name":"Cryptozoologists",
-			"flavor_text":"As a member of the local cryptozoology club, you hold strong opinions about certain fantastic creatures. Whether a self-amusing skeptic or an ardent believer, you aren't getting anywhere without a bankroll.",
-			"objective":"Find a way to fund your expedition to capture the rarely-seen Cabriolan Floor Clown.",
-			"ooc_notes":null
+			"flavor_text":"As a member of the local cryptozoology club, you hold strong opinions about certain fantastic creatures. Whether a self-amusing skeptic or an ardent believer, you aren't getting anywhere without proof.",
+			"objective":"Find rare and strange animals to host an on station zoo. One day you will get the rarely-seen Cabriolan Floor Clown.",
+			"ooc_notes":"Nothing is stopping you from taking an ordinary animal and making it seem otherwise."
 		},
 
 		{

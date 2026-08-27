@@ -12,11 +12,33 @@
 	default_custom_objective = "Perform an overcomplicated heist on valuable Nanotrasen assets."
 	hud_icon = 'modular_oculis/modules/miscreants/icons/miscreants_hud.dmi'
 	antag_hud_name = "miscreant"
-	/// Ref used to easily retrieve the action used when removing the quirk from silicons
-	var/datum/weakref/shaker_ref
-	VAR_PRIVATE
-		datum/team/miscreants/team
 
+	var/datum/team/miscreant/miscreant_team
+
+/datum/antagonist/rev/can_be_owned(datum/mind/new_owner)
+	if(new_owner.assigned_role.job_flags & JOB_HEAD_OF_STAFF)
+		return FALSE
+	if(new_owner.current && HAS_MIND_TRAIT(new_owner.current, TRAIT_UNCONVERTABLE))
+		return FALSE
+	return ..()
+
+/datum/antagonist/miscreant/proc/can_be_converted(mob/living/candidate)
+	if(!candidate.mind)
+		return FALSE
+	if(!can_be_owned(candidate.mind))
+		return FALSE
+	var/mob/living/carbon/C = candidate //Check to see if the potential miscreant is implanted
+	if(!istype(C)) //Can't convert simple animals
+		return FALSE
+	return TRUE
+
+/datum/antagonist/miscreant/proc/add_miscreant(datum/mind/miscreant_mind)
+	if(!can_be_converted(miscreant_mind.current))
+		return FALSE
+
+	miscreant_mind.add_memory(/datum/memory/recruited_by_head_miscreant, protagonist = miscreant_mind.current, antagonist = owner.current)
+	miscreant_mind.add_antag_datum(/datum/antagonist/miscreant,miscreant_team)
+	return TRUE
 
 /datum/antagonist/miscreant/create_team(datum/team/miscreants/new_team)
 	if(!new_team)
@@ -96,7 +118,7 @@
 	team.update_name()
 
 /datum/team/miscreants
-	name = "\improper Band of Miscreants"
+	name = "\improper Squad of Miscreants"
 	var/max_miscreants = 4 //maximum number of miscreants that can be assigned to this team
 	var/flavor_text = "If you see this miscreant flavor text, report it as a bug."
 	var/ooc_text = "If you see this miscreant ooc text, report it as a bug."
@@ -133,7 +155,7 @@
 	else
 		ooc_text = selected_random_scenario["ooc_notes"]
 
-/// Adds a new miscreant to the band
+/// Adds a new miscreant to the squad
 /datum/team/miscreants/proc/add_miscreant(mob/living/new_miscreant, source)
 #ifndef TESTING
 	if (isnull(new_miscreant) || isnull(new_miscreant.mind) || !GET_CLIENT(new_miscreant) || new_miscreant.mind.has_antag_datum(/datum/antagonist/miscreant))
