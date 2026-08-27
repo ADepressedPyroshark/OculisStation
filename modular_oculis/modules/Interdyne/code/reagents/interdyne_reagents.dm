@@ -164,22 +164,6 @@
 	abstract_type = /datum/reagent/drug/interdyne
 	taste_description = "corporate pharmaceuticals"
 
-/datum/reagent/drug/interdyne/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
-	. = ..()
-	// Interdyne drug interaction — mixing Interdyne chems causes liver damage
-	for(var/datum/reagent/other as anything in affected_mob.reagents.reagent_list)
-		if(other == src)
-			continue
-		if(istype(other, /datum/reagent/medicine/interdyne))
-			continue
-		if(istype(other, /datum/reagent/drug/interdyne))
-			continue
-		if(istype(other, /datum/reagent/medicine) || istype(other, /datum/reagent/drug))
-			if(affected_mob.adjust_organ_loss(ORGAN_SLOT_LIVER, 2.5 * seconds_per_tick, required_organ_flag = affected_organ_flags))
-				. = UPDATE_MOB_HEALTH
-			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_userdanger("Your liver burns — the Interdyne compound is reacting badly with other chemicals in your system!"))
-			return
 
 /datum/reagent/drug/interdyne/panaclarinz
 	name = "Panaclarin-Z"
