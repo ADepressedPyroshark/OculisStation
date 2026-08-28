@@ -1,0 +1,4 @@
+author: "Shroopy"
+delete-after: True
+changes:
+  - qol: "Reverted the command bar starting on Say. It now starts in Command mode."
