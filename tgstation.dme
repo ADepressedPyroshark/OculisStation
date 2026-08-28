@@ -10430,7 +10430,6 @@
 #include "modular_oculis\modules\mining\mega_respawning\spawn_marker.dm"
 #include "modular_oculis\modules\mining\mega_respawning\summoning_flutes.dm"
 #include "modular_oculis\modules\miscreants\code\general_memories.dm"
-#include "modular_oculis\modules\miscreants\code\miscreant_handshake_alert.dm"
 #include "modular_oculis\modules\miscreants\code\miscreant_status_effect_neutral.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_antag.dm"
 #include "modular_oculis\modules\miscreants\code\miscreants_hand_item.dm"

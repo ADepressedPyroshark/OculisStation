@@ -16,7 +16,7 @@
 		JOB_BLUESHIELD,
 		JOB_NT_REP
 	)
-	min_pop = 10
+	min_pop = 15
 	min_antag_cap = 1
 	weight = 5 //needs to be adjusted for Oculis
 
