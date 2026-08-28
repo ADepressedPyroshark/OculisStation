@@ -1,0 +1,4 @@
+author: "curiousbookshelf"
+delete-after: True
+changes:
+  - qol: "Touched up the Crew Monitor UI"
