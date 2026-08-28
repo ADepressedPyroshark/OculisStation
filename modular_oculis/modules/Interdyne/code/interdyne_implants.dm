@@ -1,5 +1,5 @@
 /// Interdyne Pharmaceuticals — Proprietary Implants
-/// Organ-type cybernetic implants, printed directly from the Interdyne fabricator.
+/// Organ-type cybernetic implants, fresh from.
 /// Inserted via surgery or Autodoc.
 
 #define ORGAN_SLOT_CHEST_INJECTOR "chest_injector"
@@ -293,3 +293,7 @@
 	desc = "Injects a dangerous overdose of combat stimulants"
 	button_icon_state = "furor"
 	injection_amount = 20
+
+#undef ORGAN_SLOT_CHEST_INJECTOR
+#undef ORGAN_SLOT_LIVER_AID
+#undef ORGAN_SLOT_LEG_DASH
