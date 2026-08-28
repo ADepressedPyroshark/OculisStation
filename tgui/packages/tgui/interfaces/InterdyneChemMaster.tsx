@@ -8,7 +8,6 @@ import {
   Icon,
   ImageButton,
   LabeledList,
-  NoticeBox,
   NumberInput,
   ProgressBar,
   Section,
