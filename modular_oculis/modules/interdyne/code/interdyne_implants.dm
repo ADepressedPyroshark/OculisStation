@@ -2,9 +2,6 @@
 /// Organ-type cybernetic implants, fresh from.
 /// Inserted via surgery or Autodoc.
 
-#define ORGAN_SLOT_CHEST_INJECTOR "chest_injector"
-#define ORGAN_SLOT_LIVER_AID "liverdrive"
-#define ORGAN_SLOT_LEG_DASH "leg_dashdrive"
 
 // ---- INTERDYNE IMPLANT BASE TYPES ----
 
@@ -294,6 +291,3 @@
 	button_icon_state = "furor"
 	injection_amount = 20
 
-#undef ORGAN_SLOT_CHEST_INJECTOR
-#undef ORGAN_SLOT_LIVER_AID
-#undef ORGAN_SLOT_LEG_DASH
