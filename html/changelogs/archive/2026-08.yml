@@ -650,3 +650,8 @@
       it
   curiousbookshelf:
   - qol: Touched up the Crew Monitor UI
+2026-08-29:
+  Shroopy:
+  - rscadd: Added DS-2-specific headsets and associated encryption keys, that have
+      access to the Cybersun and Interdyne channels.
+  - rscdel: Removed Interdyne knowing codespeak.
