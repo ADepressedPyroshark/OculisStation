@@ -7,9 +7,6 @@
 		/datum/stock_part/servo = 1,
 	)
 
-/obj/item/seeds
-	///infusion damage
-	var/infusion_damage = 0
 
 /obj/machinery/infuser
 	name = "Plant Chemical Infuser"
