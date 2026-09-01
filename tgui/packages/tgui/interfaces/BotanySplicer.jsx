@@ -1,4 +1,4 @@
-import { toFixed } from 'common/math';
+import { toFixed } from 'tgui-core/math';
 import { useBackend, useSharedState } from '../backend';
 import {
   Box,
