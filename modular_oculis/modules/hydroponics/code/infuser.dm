@@ -20,13 +20,9 @@
 
 	var/obj/item/seeds/seed
 	var/obj/item/reagent_containers/cup/beaker/held_beaker
-
 	var/working = FALSE
-
 	var/work_timer = null
-
 	var/potential_damage = 0
-
 	var/list/stats = list()
 
 /obj/machinery/infuser/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
