@@ -32,7 +32,7 @@ export const TimeFormat = (props) => {
 export const InsertedSeed = (props) => {
   const { act, data } = useBackend();
   const { seed, working } = data;
-  const seed = data.seed || [];
+  const seed = data.has_seed || [];
   if (!seed) {
     return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
   }
@@ -107,7 +107,7 @@ export const InsertedSeedInfusion = (props) => {
   }
   return (
     <Section
-      title="Seed Number One"
+      title="Seed"
       buttons={
         <Button
           icon="eject"
