@@ -2,7 +2,7 @@
 /obj/item/circuitboard/machine/infuser
 	name = "Plant Chemical Infuser (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SERVICE
-	build_path = /obj/machinery/splicer
+	build_path = /obj/machinery/infuser
 	req_components = list(
 		/datum/stock_part/servo = 1,
 	)
@@ -12,8 +12,8 @@
 	name = "Plant Chemical Infuser"
 	desc = "Infuses seeds with chemicals."
 	icon = 'modular_oculis/modules/hydroponics/icons/infuser.dmi'
-	base_icon_state = "splicer"
-	icon_state = "splicer"
+	base_icon_state = "infuser"
+	icon_state = "infuser"
 	circuit = /obj/item/circuitboard/machine/infuser
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.5
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5
@@ -27,38 +27,46 @@
 
 	var/potential_damage = 0
 
+	var/list/stats = list()
 
+/obj/machinery/infuser/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+    if(istype(tool, /obj/item/seeds))
+        if(seed)
+            balloon_alert(user, "seed slot occupied!")
+            return ITEM_INTERACT_BLOCKING
+        if(!user.transferItemToLoc(tool, src))
+            return ITEM_INTERACT_BLOCKING
+        seed = tool
+        balloon_alert(user, "seed inserted")
+        return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/splicer/attacked_by(obj/item/I, mob/living/user)
-	. = ..()
-	if(istype(I, /obj/item/seeds))
-		if(!seed)
-			if(!user.transferItemToLoc(I, src))
-				return
-			seed = I
+    if(istype(tool, /obj/item/reagent_containers/cup/beaker))
+        if(held_beaker)
+            balloon_alert(user, "beaker slot occupied!")
+            return ITEM_INTERACT_BLOCKING
+        if(!user.transferItemToLoc(tool, src))
+            return ITEM_INTERACT_BLOCKING
+        held_beaker = tool
+        balloon_alert(user, "beaker inserted")
+        return ITEM_INTERACT_SUCCESS
 
-	else if(istype(I, /obj/item/reagent_containers/cup/beaker))
-		if(!held_beaker)
-			if(!user.transferItemToLoc(I, src))
-				return
-			held_beaker = I
-			return
+    return NONE
 
-/obj/machinery/splicer/wrench_act(mob/living/user, obj/item/tool)
+/obj/machinery/infuser/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
 	default_unfasten_wrench(user, tool)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/splicer/screwdriver_act(mob/living/user, obj/item/tool)
+/obj/machinery/infuser/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(!.)
 		return default_deconstruction_screwdriver(user, base_icon_state, base_icon_state, tool)
 
-/obj/machinery/splicer/crowbar_act(mob/living/user, obj/item/tool)
+/obj/machinery/infuser/crowbar_act(mob/living/user, obj/item/tool)
 	if(default_deconstruction_crowbar(tool))
 		return TRUE
 
-/obj/machinery/splicer/update_icon_state()
+/obj/machinery/infuser/update_icon_state()
 	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[base_icon_state]_broken"
@@ -69,20 +77,20 @@
 	else
 		icon_state = "[base_icon_state]"
 
-/obj/machinery/splicer/update_overlays()
+/obj/machinery/infuser/update_overlays()
 	. = ..()
 	if(panel_open)
 		. += "[base_icon_state]_open"
 
-/obj/machinery/splicer/set_anchored(anchorvalue)
+/obj/machinery/infuser/set_anchored(anchorvalue)
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/splicer/on_set_panel_open(old_value)
+/obj/machinery/infuser/on_set_panel_open(old_value)
 	. = ..()
 	update_appearance(UPDATE_OVERLAYS)
 
-/obj/machinery/splicer/ui_data(mob/user)
+/obj/machinery/infuser/ui_data(mob/user)
 	. = ..()
 
 	var/has_seed = FALSE
@@ -90,7 +98,7 @@
 	var/list/data = list()
 
 	if(seed)
-		data["seed"] = list(seed.return_all_data() + stats)
+		data["seed"] = list(seed.return_all_data())
 		has_seed = TRUE
 		data["damage_taken"] = seed.infusion_damage
 		data["potential_damage"] = potential_damage
@@ -109,15 +117,15 @@
 
 	return data
 
-/obj/machinery/splicer/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/infuser/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BotanySplicer", name)
+		ui = new(user, src, "BotanyInfuser", name)
 		ui.set_autoupdate(TRUE)
 		ui.open()
 
-/obj/machinery/splicer/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/infuser/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -134,7 +142,7 @@
 			infuse()
 			return TRUE
 
-/obj/machinery/splicer/proc/eject_seed(obj/item/seeds/ejected_seed)
+/obj/machinery/infuser/proc/eject_seed(obj/item/seeds/ejected_seed)
 	if (ejected_seed)
 		if(Adjacent(usr) && !HAS_SILICON_ACCESS(usr))
 			if (!usr.put_in_hands(ejected_seed))
@@ -143,7 +151,7 @@
 			ejected_seed.forceMove(drop_location())
 		. = TRUE
 
-/obj/machinery/splicer/proc/eject_beaker()
+/obj/machinery/infuser/proc/eject_beaker()
 	if (held_beaker)
 		if(Adjacent(usr) && !HAS_SILICON_ACCESS(usr))
 			if (!usr.put_in_hands(held_beaker))
@@ -156,16 +164,29 @@
 
 
 
-/obj/machinery/splicer/proc/calculate_stats_for_infusion()
+/obj/machinery/infuser/proc/calculate_stats_for_infusion()
 	if(!held_beaker)
 		return
+
+	var/list/total_stats = list(
+		"potency_change" = 0,
+		"yield_change" = 0,
+		"endurance_change" = 0,
+		"lifespan_change" = 0,
+		"weed_chance_change" = 0,
+		"weed_rate_change" = 0,
+		"production_change" = 0,
+		"maturation_change" = 0,
+		"damage" = 0,
+	)
 	for(var/reagent in held_beaker.reagents.reagent_list)
 		var/datum/reagent/listed_reagent = reagent
 		total_stats += listed_reagent.generate_infusion_values(held_beaker.reagents)
 	stats = total_stats
 	potential_damage = stats["damage"]
 
-/obj/machinery/splicer/proc/infuse()
+
+/obj/machinery/infuser/proc/infuse()
 	if(!held_beaker || !seed) /// Checks if we have a beaker and a seed to infuse
 		return
 	potential_damage = held_beaker.reagents.total_volume / 10 /// Every 10 units of reagents in the beaker will cause 1 damage to the seed.
@@ -234,7 +255,6 @@
 	else
 		to_chat(usr, span_warning("The beaker is empty! Nothing to infuse."))
 
-	seed.check_infusions(successful_reagents)
 	if(held_beaker && held_beaker.reagents)
 		held_beaker.reagents.remove_all(held_beaker.reagents.total_volume)
 	successful_reagents = list()

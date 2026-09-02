@@ -29,29 +29,29 @@ export const TimeFormat = (props) => {
   return formattedValue;
 };
 
-export const InsertedSeedOne = (props) => {
+export const InsertedSeed = (props) => {
   const { act, data } = useBackend();
-  const { seedone, working } = data;
-  const seed_1 = data.seed_1 || [];
-  if (!seedone) {
+  const { seed, working } = data;
+  const seed = data.seed || [];
+  if (!seed) {
     return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
   }
   return (
     <Section
-      title="Seed Number One"
+      title="Seed"
       buttons={
         <Button
           icon="eject"
           disabled={!!working}
-          onClick={() => act('eject_seed_one')}
+          onClick={() => act('eject_seed')}
           content="Eject Seed"
         />
       }
     >
-      {!seed_1.length && 'No Seed detected.'}
-      {!!seed_1.length && (
+      {!seed.length && 'No Seed detected.'}
+      {!!seed.length && (
         <Table>
-          {seed_1.map((node) => (
+          {seed.map((node) => (
             <Table.Row key={node.ref}>
               <Table.Cell collapsing>
                 <img
@@ -98,11 +98,11 @@ export const InsertedSeedOne = (props) => {
   );
 };
 
-export const InsertedSeedOneInfusion = (props) => {
+export const InsertedSeedInfusion = (props) => {
   const { act, data } = useBackend();
-  const { seedone, working } = data;
-  const seed_1 = data.seed_1 || [];
-  if (!seedone) {
+  const { seed, working } = data;
+  const seed = data.seed || [];
+  if (!seed) {
     return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
   }
   return (
@@ -112,15 +112,15 @@ export const InsertedSeedOneInfusion = (props) => {
         <Button
           icon="eject"
           disabled={!!working}
-          onClick={() => act('eject_seed_one')}
+          onClick={() => act('eject_seed')}
           content="Eject Seed"
         />
       }
     >
-      {!seed_1.length && 'No Seed detected.'}
-      {!!seed_1.length && (
+      {!seed.length && 'No Seed detected.'}
+      {!!seed.length && (
         <Table>
-          {seed_1.map((node) => (
+          {seed.map((node) => (
             <Table.Row key={node.ref}>
               <Table.Cell collapsing>
                 <img
@@ -183,74 +183,6 @@ export const InsertedSeedOneInfusion = (props) => {
   );
 };
 
-export const InsertedSeedTwo = (props) => {
-  const { act, data } = useBackend();
-  const { seedtwo, working } = data;
-  const seed_2 = data.seed_2 || [];
-  if (!seedtwo) {
-    return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
-  }
-  return (
-    <Section
-      title="Seed Number Two"
-      buttons={
-        <Button
-          icon="eject"
-          disabled={!!working}
-          onClick={() => act('eject_seed_two')}
-          content="Eject Seed"
-        />
-      }
-    >
-      {!seed_2.length && 'No Seed detected.'}
-      {!!seed_2.length && (
-        <Table>
-          {seed_2.map((node) => (
-            <Table.Row key={node.ref}>
-              <Table.Cell collapsing>
-                <img
-                  src={`data:image/jpeg;base64,${node.image}`}
-                  style={{
-                    verticalAlign: 'middle',
-                    horizontalAlign: 'middle',
-                  }}
-                />
-              </Table.Cell>
-              <Table.Cell>{node.name}</Table.Cell>
-              <LabeledList>
-                <LabeledList.Item label="Potency">
-                  <Box>{node.potency}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Yield">
-                  <Box>{node.yield}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Production Speed">
-                  <Box>{node.production_speed}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Maturation Speed">
-                  <Box>{node.maturation_speed}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Endurance">
-                  <Box>{node.endurance}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Lifespan">
-                  <Box>{node.lifespan}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Weed Rate">
-                  <Box>{node.weed_rate}</Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Weed Chance">
-                  <Box>{node.weed_chance}</Box>
-                </LabeledList.Item>
-              </LabeledList>
-              <Table.Cell />
-            </Table.Row>
-          ))}
-        </Table>
-      )}
-    </Section>
-  );
-};
 
 export const InsertedBeaker = (props) => {
   const { act, data } = useBackend();
@@ -277,33 +209,16 @@ export const InsertedBeaker = (props) => {
   );
 };
 
-export const SpliceButton = (props) => {
-  const { act, data } = useBackend();
-  const { working, seedone, seedtwo } = data;
-  return (
-    <Button
-      width="380px"
-      height="20px"
-      icon="eject"
-      disabled={!!working && !seedone && !seedtwo}
-      onClick={() => act('splice')}
-      color="green"
-      textAlign="center"
-      align-content="center"
-      content="Splice Seeds"
-    />
-  );
-};
 
 export const InfuseButton = (props) => {
   const { act, data } = useBackend();
-  const { working, seedone, beaker } = data;
+  const { working, seed, beaker } = data;
   return (
     <Button
       width="380px"
       height="20px"
       icon="eject"
-      disabled={!!working && !seedone && !beaker}
+      disabled={!!working && !seed && !beaker}
       onClick={() => act('infuse')}
       color="green"
       textAlign="center"
@@ -329,12 +244,12 @@ export const DamageBar = (props) => {
   );
 };
 
-export const BotanySplicer = (props) => {
+export const BotanyInfuser = (props) => {
   const { data } = useBackend();
-  const [tab, setTab] = useSharedState('tab', 'splicing');
+  const [tab, setTab] = useSharedState('tab', 'infusion');
   const { working, timeleft, error } = data;
   return (
-    <Window title="Plant Splicer" width={390} height={525}>
+    <Window title="Plant Infusion" width={390} height={525}>
       <Window.Content>
         {!!error && <NoticeBox>{error}</NoticeBox>}
         {!!working && (
@@ -350,12 +265,6 @@ export const BotanySplicer = (props) => {
         <Section fitted>
           <Tabs>
             <Tabs.Tab
-              selected={tab === 'splicing'}
-              onClick={() => setTab('splicing')}
-            >
-              Splicing
-            </Tabs.Tab>
-            <Tabs.Tab
               selected={tab === 'infusion'}
               onClick={() => setTab('infusion')}
             >
@@ -363,31 +272,19 @@ export const BotanySplicer = (props) => {
             </Tabs.Tab>
           </Tabs>
         </Section>
-        {tab === 'splicing' && <SplicingTab />}
         {tab === 'infusion' && <InfusionTab />}
       </Window.Content>
     </Window>
   );
 };
 
-export const SplicingTab = (props) => {
-  const { data } = useBackend();
-  const { working, timeleft, error } = data;
-  return (
-    <Section fitted>
-      <InsertedSeedOne />
-      <InsertedSeedTwo />
-      <SpliceButton />
-    </Section>
-  );
-};
 
 export const InfusionTab = (props) => {
   const { data } = useBackend();
   const { working, timeleft, error } = data;
   return (
     <Section fitted>
-      <InsertedSeedOneInfusion />
+      <InsertedSeedInfusion />
       <Flex.Item>
         <DamageBar />
       </Flex.Item>
