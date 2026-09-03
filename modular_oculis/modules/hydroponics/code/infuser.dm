@@ -26,27 +26,27 @@
 	var/list/stats = list()
 
 /obj/machinery/infuser/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-    if(istype(tool, /obj/item/seeds))
-        if(seed)
-            balloon_alert(user, "seed slot occupied!")
-            return ITEM_INTERACT_BLOCKING
-        if(!user.transferItemToLoc(tool, src))
-            return ITEM_INTERACT_BLOCKING
-        seed = tool
-        balloon_alert(user, "seed inserted")
-        return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/seeds))
+		if(seed)
+			balloon_alert(user, "seed slot occupied!")
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(tool, src))
+			return ITEM_INTERACT_BLOCKING
+		seed = tool
+		balloon_alert(user, "seed inserted")
+		return ITEM_INTERACT_SUCCESS
 
-    if(istype(tool, /obj/item/reagent_containers/cup/beaker))
-        if(held_beaker)
-            balloon_alert(user, "beaker slot occupied!")
-            return ITEM_INTERACT_BLOCKING
-        if(!user.transferItemToLoc(tool, src))
-            return ITEM_INTERACT_BLOCKING
-        held_beaker = tool
-        balloon_alert(user, "beaker inserted")
-        return ITEM_INTERACT_SUCCESS
+	if(istype(tool, /obj/item/reagent_containers/cup/beaker))
+		if(held_beaker)
+			balloon_alert(user, "beaker slot occupied!")
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(tool, src))
+			return ITEM_INTERACT_BLOCKING
+		held_beaker = tool
+		balloon_alert(user, "beaker inserted")
+		return ITEM_INTERACT_SUCCESS
 
-    return NONE
+	return NONE
 
 /obj/machinery/infuser/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -187,6 +187,7 @@
 		return
 
 	if(apply_infusion_damage())
+		held_beaker.reagents.remove_all(held_beaker.reagents.total_volume)
 		return
 
 	if(isnull(held_beaker.reagents) || !length(held_beaker.reagents.reagent_list))

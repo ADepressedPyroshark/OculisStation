@@ -31,9 +31,8 @@ export const TimeFormat = (props) => {
 
 export const InsertedSeed = (props) => {
   const { act, data } = useBackend();
-  const { seed, working } = data;
-  const seed = data.has_seed || [];
-  if (!seed) {
+  const { seed, has_seed, working } = data;
+  if (!has_seed) {
     return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
   }
   return (
@@ -48,8 +47,8 @@ export const InsertedSeed = (props) => {
         />
       }
     >
-      {!seed.length && 'No Seed detected.'}
-      {!!seed.length && (
+      {!has_seed.length && 'No Seed detected.'}
+      {!!has_seed.length && (
         <Table>
           {seed.map((node) => (
             <Table.Row key={node.ref}>
@@ -101,7 +100,6 @@ export const InsertedSeed = (props) => {
 export const InsertedSeedInfusion = (props) => {
   const { act, data } = useBackend();
   const { seed, working } = data;
-  const seed = data.seed || [];
   if (!seed) {
     return !working && <NoticeBox info>Please insert a seed.</NoticeBox>;
   }
